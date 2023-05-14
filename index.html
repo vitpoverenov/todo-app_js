@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>ToDo list:</title>
+</head>
+<body>
+
+  <div class="todo">
+    <div class="todo__input">
+      <input class="todo__text" type="text"> <!-- Текстовое поле для ввода текста действия  -->
+      <span class="todo__add"></span>
+    </div>
+
+    <select class="todo__options">
+      <option value="active">активные</option>
+      <option value="completed">завершённые</option>
+      <option value="deleted">удалённые</option>
+    </select>
+
+    <ul class="todo__items" data-todo-option="active">
+      <li class="todo__item" data-todo-state="active"> <!--Значение атрибута data-todo-state будет определять состояние задачи:-->
+        <span class="todo__task">Текст задачи</span>
+        <span class="todo__action todo__action_restore" data-todo-action="active"></span>
+        <span class="todo__action todo__action_complete" data-todo-action="completed"></span>
+        <span class="todo__action todo__action_delete" data-todo-action="deleted"></span>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
