@@ -20,8 +20,10 @@ const todo = {
     <span class="todo__task">${text}</span>
     <span class="todo__action todo__action_restore" data-todo-action="active"></span>
     <span class="todo__action todo__action_complete" data-todo-action="completed"></span>
-    <span class="todo__action todo__action_delete" data-todo-action="deleted"></span></li>`;
+    <span class="todo__action todo__action_delete" data-todo-action="deleted"></span>
+  </li>`;
   },
+
   init() {
     const fromStorage = localStorage.getItem('todo');
   if (fromStorage) {
@@ -31,11 +33,13 @@ const todo = {
   document.addEventListener('click', this.action.bind(this));},
   add() {
     const elemText = document.querySelector('.todo__text');
-    if (elemText.disabled || !elemText.value.length) {
-      return;
-    }
-    document.querySelector('.todo__items').insertAdjacentHTML('beforeend', this.create(elemText.value));
-    elemText.value = '';
+  if (elemText.disabled || !elemText.value.length) {
+    return;
+  }
+  document.querySelector('.todo__items').insertAdjacentHTML('beforeend', this.create(elemText.value));
+  elemText.value = '';
+
+  this.update(); // Обновление состояния списка задач
   },
   update() {
     const option = document.querySelector('.todo__options').value;
@@ -46,5 +50,10 @@ const todo = {
     localStorage.setItem('todo', document.querySelector('.todo__items').innerHTML);
   }
 };
+
+document.querySelector('.todo__add').addEventListener('click', function() {
+  todo.add();
+  todo.save();
+});
 
 todo.init();
